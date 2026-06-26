@@ -93,7 +93,9 @@ def query():
         print(f"Error querying: {e}")
         return jsonify({"error": str(e)}), 500
 
+# Initialize the backend immediately so Gunicorn runs it when importing the app
+setup_backend()
+
 if __name__ == '__main__':
-    if setup_backend():
-        print("Backend successfully started. Serving on port 5000.")
-        app.run(debug=True, use_reloader=False)
+    print("Backend successfully started. Serving on port 5000.")
+    app.run(debug=True, use_reloader=False)
