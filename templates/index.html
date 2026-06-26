@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RCA Intel - AI Assistant</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar context (optional decoration or future use) -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="logo-orb"></div>
+                <h1>RCA Intel</h1>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="active" id="nav-chat"><i class="fa-solid fa-message"></i> Q&A Chat</a>
+                <a href="#" id="nav-docs"><i class="fa-solid fa-file-pdf"></i> RCA Documents (17)</a>
+                <a href="#" id="nav-settings"><i class="fa-solid fa-gear"></i> Settings</a>
+            </nav>
+            <div class="system-status">
+                <div class="status-indicator online"></div>
+                <span>LLM Engine Active</span>
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="chat-area">
+            <header class="chat-header">
+                <h2>RCA Document Assistant</h2>
+                <p>Ask anything about the pipeline root cause analysis reports.</p>
+            </header>
+
+            <div class="messages-container" id="messages-container">
+                <!-- Welcome Message -->
+                <div class="message bot-message">
+                    <div class="avatar"><i class="fa-solid fa-robot"></i></div>
+                    <div class="message-content">
+                        <p>Hello! I am connected to the 17 RCA documents and ready to answer your questions. What would you like to know?</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-area">
+                <form id="chat-form" class="chat-form">
+                    <input type="text" id="query-input" placeholder="Type your question here (e.g. 'Why did the motor break down?')" autocomplete="off" required>
+                    <button type="submit" id="send-button">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="docs-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <header class="modal-header">
+                <h2><i class="fa-solid fa-file-pdf"></i> RCA Documents</h2>
+                <button class="close-modal"><i class="fa-solid fa-xmark"></i></button>
+            </header>
+            <div class="modal-body">
+                <p>The following 17 documents have been indexed and are ready for queries:</p>
+                <ul class="doc-list" id="doc-list">
+                    <!-- Added via JS or hardcoded -->
+                    <li>1_MP-03 Motor breakdown at Jatni.pdf</li>
+                    <li>2_MP-01 Pump Failure at Barauni.pdf</li>
+                    <li>3_MP-05 Bearing failure at Haldia.pdf</li>
+                    <li>4_BP-01 Seal failure at WRPL Viramgam.pdf</li>
+                    <li>5_MP-02 Motor breakdown at Paradip.pdf</li>
+                    <li><em>...and 12 more root cause analysis reports.</em></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="settings-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <header class="modal-header">
+                <h2><i class="fa-solid fa-gear"></i> System Settings</h2>
+                <button class="close-modal"><i class="fa-solid fa-xmark"></i></button>
+            </header>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <label>LLM Engine</label>
+                    <select disabled>
+                        <option>llama-3.1-8b-instant (Groq)</option>
+                    </select>
+                </div>
+                <div class="setting-group">
+                    <label>Temperature</label>
+                    <input type="range" min="0" max="1" step="0.1" value="0.1" disabled>
+                    <span class="setting-hint">Currently locked at 0.1 for high factual accuracy.</span>
+                </div>
+                <div class="setting-group">
+                    <label>Retrieval Metric</label>
+                    <input type="text" value="TF-IDF Vectorization" disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

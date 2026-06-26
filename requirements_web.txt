@@ -1,0 +1,8 @@
+langchain
+langchain-groq
+pandas
+openpyxl
+flask
+flask-cors
+scikit-learn
+gunicorn

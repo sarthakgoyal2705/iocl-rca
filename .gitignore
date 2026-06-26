@@ -1,0 +1,18 @@
+# Environments
+venv/
+venv_web/
+__pycache__/
+
+# Mac
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Environment Variables
+.env
+.env.local
+
+# Optional ignore data if you don't want to push PDFs. But we need tfidf_retriever.pkl for deployment.
+# We will explicitly add tfidf_retriever.pkl and data folders if needed.
