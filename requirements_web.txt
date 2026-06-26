@@ -6,3 +6,4 @@ flask
 flask-cors
 scikit-learn
 gunicorn
+langchain_community
